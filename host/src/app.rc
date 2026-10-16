@@ -1,0 +1,30 @@
+// Program icon (L3 "speed lines" design): Explorer, taskbar and title bar.
+1 ICON "app.ico"
+
+#include <winver.h>
+#ifndef VP_VERSION_NUM
+#define VP_VERSION_NUM 0,0,0,0
+#define VP_VERSION_STR "0.0.0"
+#endif
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION VP_VERSION_NUM
+ PRODUCTVERSION VP_VERSION_NUM
+ FILEOS VOS_NT_WINDOWS32
+ FILETYPE VFT_APP
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040404B0"
+        BEGIN
+            VALUE "FileDescription", "SceneArc"
+            VALUE "ProductName", "SceneArc"
+            VALUE "FileVersion", VP_VERSION_STR
+            VALUE "ProductVersion", VP_VERSION_STR
+            VALUE "OriginalFilename", "VideoPlayer.exe"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0404, 1200
+    END
+END

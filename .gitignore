@@ -1,0 +1,24 @@
+# User settings and data (the player keeps them next to the exe or in the repo root while developing)
+/config.json
+/config.json*
+/data/
+# Build output, logs and packages
+/build-logs/
+/host/build*/
+**/dist/
+*.log
+# Third-party SDKs and runtime (see README: 建置需求)
+/deps/
+/host/third_party/
+/vs-runtime/
+# Tooling
+**/node_modules/
+/.claude/
+/snapshots/
+# mpv_PlayKit assets (dependency; tools/sync-mpv-assets.ps1 copies them)
+/mpv/shaders/
+/mpv/fonts/
+/mpv/vs/MEMC_DRBA_DML.vpy
+/mpv/vs/MEMC_MVT_LQ.vpy
+/mpv/vs/MEMC_RIFE_DML.vpy
+/mpv/vs/MIX_UAI_DML.vpy

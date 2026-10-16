@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0B0D12">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="brand/icon-192.png">
+<title>SceneArc</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<script>try{var t=localStorage.getItem("vp-theme");if(t&&t!=="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<link rel="stylesheet" href="app.css?v=20261016scenearc">
+<link rel="stylesheet" href="lan.css?v=20261015p3-b2b">
+<!-- jassub (libass → WebAssembly) imports this polyfill by its bare name -->
+<script type="importmap">{"imports": {"rvfc-polyfill": "./vendor/rvfc-polyfill/index.js"}}</script>
+</head>
+<body>
+<!-- start-up animation: the triangle is drawn, then the 24 lines appear clockwise from 12 o'clock -->
+<div id="splash" class="splash" aria-hidden="true">
+<svg class="splash-logo" viewBox="0 0 256 256" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4F7BFF"/><stop offset=".55" stop-color="#8B5CF6"/><stop offset="1" stop-color="#F0609E"/></linearGradient></defs>
+<g class="splash-lines">
+<line class="sl" style="--i:0" x1="128.0" y1="50.0" x2="128.0" y2="20.0" stroke="url(#g)" stroke-width="5" stroke-linecap="round" stroke-opacity="0.92"/>
+<line class="sl" style="--i:1" x1="149.7" y1="46.9" x2="156.0" y2="23.7" stroke="url(#g)" stroke-width="3" stroke-linecap="round" stroke-opacity="0.55"/>
+<line class="sl" style="--i:2" x1="173.0" y1="50.1" x2="182.0" y2="34.5" stroke="url(#g)" stroke-width="5" stroke-linecap="round" stroke-opacity="0.92"/>
+<line class="sl" style="--i:3" x1="183.2" y1="72.8" x2="204.4" y2="51.6" stroke="url(#g)" stroke-width="3" stroke-linecap="round" stroke-opacity="0.55"/>
+<line class="sl" style="--i:4" x1="200.7" y1="86.0" x2="221.5" y2="74.0" stroke="url(#g)" stroke-width="5" stroke-linecap="round" stroke-opacity="0.92"/>
+<line class="sl" style="--i:5" x1="214.9" y1="104.7" x2="232.3" y2="100.0" stroke="url(#g)" stroke-width="3" stroke-linecap="round" stroke-opacity="0.55"/>
+<line class="sl" style="--i:6" x1="206.0" y1="128.0" x2="236.0" y2="128.0" stroke="url(#g)" stroke-width="5" stroke-linecap="round" stroke-opacity="0.92"/>
+<line class="sl" style="--i:7" x1="209.1" y1="149.7" x2="232.3" y2="156.0" stroke="url(#g)" stroke-width="3" stroke-linecap="round" stroke-opacity="0.55"/>
+<line class="sl" style="--i:8" x1="205.9" y1="173.0" x2="221.5" y2="182.0" stroke="url(#g)" stroke-width="5" stroke-linecap="round" stroke-opacity="0.92"/>
+<line class="sl" style="--i:9" x1="183.2" y1="183.2" x2="204.4" y2="204.4" stroke="url(#g)" stroke-width="3" stroke-linecap="round" stroke-opacity="0.55"/>
+<line class="sl" style="--i:10" x1="170.0" y1="200.7" x2="182.0" y2="221.5" stroke="url(#g)" stroke-width="5" stroke-linecap="round" stroke-opacity="0.92"/>
+<line class="sl" style="--i:11" x1="151.3" y1="214.9" x2="156.0" y2="232.3" stroke="url(#g)" stroke-width="3" stroke-linecap="round" stroke-opacity="0.55"/>
+<line class="sl" style="--i:12" x1="128.0" y1="206.0" x2="128.0" y2="236.0" stroke="url(#g)" stroke-width="5" stroke-linecap="round" stroke-opacity="0.92"/>
+<line class="sl" style="--i:13" x1="106.3" y1="209.1" x2="100.0" y2="232.3" stroke="url(#g)" stroke-width="3" stroke-linecap="round" stroke-opacity="0.55"/>
+<line class="sl" style="--i:14" x1="83.0" y1="205.9" x2="74.0" y2="221.5" stroke="url(#g)" stroke-width="5" stroke-linecap="round" stroke-opacity="0.92"/>
+<line class="sl" style="--i:15" x1="72.8" y1="183.2" x2="51.6" y2="204.4" stroke="url(#g)" stroke-width="3" stroke-linecap="round" stroke-opacity="0.55"/>
+<line class="sl" style="--i:16" x1="55.3" y1="170.0" x2="34.5" y2="182.0" stroke="url(#g)" stroke-width="5" stroke-linecap="round" stroke-opacity="0.92"/>
+<line class="sl" style="--i:17" x1="41.1" y1="151.3" x2="23.7" y2="156.0" stroke="url(#g)" stroke-width="3" stroke-linecap="round" stroke-opacity="0.55"/>
+<line class="sl" style="--i:18" x1="50.0" y1="128.0" x2="20.0" y2="128.0" stroke="url(#g)" stroke-width="5" stroke-linecap="round" stroke-opacity="0.92"/>
+<line class="sl" style="--i:19" x1="46.9" y1="106.3" x2="23.7" y2="100.0" stroke="url(#g)" stroke-width="3" stroke-linecap="round" stroke-opacity="0.55"/>
+<line class="sl" style="--i:20" x1="50.1" y1="83.0" x2="34.5" y2="74.0" stroke="url(#g)" stroke-width="5" stroke-linecap="round" stroke-opacity="0.92"/>
+<line class="sl" style="--i:21" x1="72.8" y1="72.8" x2="51.6" y2="51.6" stroke="url(#g)" stroke-width="3" stroke-linecap="round" stroke-opacity="0.55"/>
+<line class="sl" style="--i:22" x1="86.0" y1="55.3" x2="74.0" y2="34.5" stroke="url(#g)" stroke-width="5" stroke-linecap="round" stroke-opacity="0.92"/>
+<line class="sl" style="--i:23" x1="104.7" y1="41.1" x2="100.0" y2="23.7" stroke="url(#g)" stroke-width="3" stroke-linecap="round" stroke-opacity="0.55"/>
+</g>
+<path class="splash-tri" d="M110 92 L110 164 L170 128 Z" pathLength="100" fill="none" stroke="url(#g)" stroke-width="12" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>
+</div>
+<div id="shell" class="shell">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <div class="frame">
+    <header class="top">
+      <div class="top-left">
+        <button class="brand-logo" data-action="home" aria-label="回到首頁" title="回到首頁"><img src="brand/mark.svg" alt="" draggable="false"></button>
+      </div>
+      <nav aria-label="媒體庫分類" class="glass cats" id="cats"></nav>
+      <div class="top-right">
+        <div class="glass tool-group" id="tool-group">
+          <form role="search" class="tool-search" id="search-form">
+            <svg class="tool-search-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+            <label class="sr" for="q">搜尋</label>
+            <input id="q" type="search" placeholder="搜尋影片、劇集或頻道" autocomplete="off" tabindex="-1">
+            <button type="button" class="tool-clear" data-action="search-close" aria-label="關閉搜尋" tabindex="-1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+          </form>
+          <button class="tool-btn" data-action="search-open" aria-label="搜尋" title="搜尋（/）">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+          </button>
+          <button class="tool-btn" data-action="settings" aria-label="設定" title="設定">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12"></path><circle cx="16" cy="6" r="2"></circle><circle cx="10" cy="12" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div id="gpu-banner" class="gpu-banner" role="alert" hidden></div>
+    <main id="view" class="view"></main>
+  </div>
+</div>
+
+<div id="player" class="player" hidden>
+  <div class="p-subs" id="p-subs" aria-live="off"></div>
+  <div class="p-curtain" id="p-curtain" aria-hidden="true"></div>
+  <div class="p-dim" aria-hidden="true"></div>
+  <div class="p-top">
+    <button class="p-btn" data-action="player-back" aria-label="返回">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+    </button>
+    <div class="p-titles">
+      <div class="p-title" id="p-title"></div>
+      <div class="p-sub" id="p-sub"></div>
+    </div>
+    <div class="p-badges" id="p-badges"></div>
+  </div>
+
+  <div class="p-center" id="p-center">
+    <div class="p-spinner" id="p-spinner"></div>
+    <button class="p-bigplay" id="p-bigplay" data-action="toggle" aria-label="播放">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+    </button>
+    <div class="p-message" id="p-message"></div>
+    <div class="p-flash" id="p-flash" aria-hidden="true"></div>
+  </div>
+
+  <button class="p-upnext glass-dark" id="p-upnext" data-action="next-episode"></button>
+
+  <div class="p-bottom">
+    <div class="p-chapters glass-dark" id="p-chapters" role="menu" aria-label="章節" hidden></div>
+    <div class="p-seek" id="p-seek" role="slider" aria-label="播放進度" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="p-track"><div class="p-fill" id="p-fill"></div><div class="p-hover" id="p-hover"></div></div>
+      <div class="p-knob-rail" id="p-knob-rail"><div class="p-knob" id="p-knob"></div></div>
+      <div class="p-tip" id="p-tip" hidden><img id="p-tip-img" alt="" hidden><span id="p-tip-time"></span></div>
+    </div>
+    <div class="p-times">
+      <span class="p-pos" id="p-pos">0:00:00</span>
+      <button class="p-time" id="p-time" data-action="toggle-remaining" title="切換剩餘時間">0:00:00</button>
+    </div>
+    <div class="p-row">
+      <div class="p-group p-left">
+      <button class="p-btn" data-action="toggle" id="p-toggle" aria-label="暫停">
+        <svg id="ico-pause" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg>
+        <svg id="ico-play" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden><path d="M8 5v14l11-7z"></path></svg>
+      </button>
+      <button class="p-btn" data-action="back10" aria-label="倒轉 10 秒">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path><path d="M3 3v5h5"></path></svg>
+      </button>
+      <button class="p-btn" data-action="fwd10" aria-label="快轉 10 秒">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"></path><path d="M21 3v5h-5"></path></svg>
+      </button>
+      <button class="p-btn" data-action="next-episode" id="p-next" aria-label="下一集" hidden>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 5v14l10-7z"></path><rect x="16" y="5" width="3" height="14" rx="1"></rect></svg>
+      </button>
+      <!-- mpv edition: software volume (cubic) + mute; locked at 100 % while bit-perfect output is on -->
+      <div class="p-vol" id="p-vol-wrap" hidden>
+        <button class="p-btn" data-action="toggle-mute" id="p-mute" aria-label="靜音" title="靜音（M）">
+          <svg id="ico-vol" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"></path></svg>
+          <svg id="ico-muted" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden><path d="M11 5 6 9H3v6h3l5 4z"></path><path d="M16 9l6 6M22 9l-6 6"></path></svg>
+        </button>
+        <input type="range" class="p-vol-range" id="p-vol" min="0" max="100" step="1" value="100" aria-label="音量">
+        <span class="p-vol-val" id="p-vol-val">100%</span>
+        <span class="p-vol-note" id="p-vol-note" hidden>完美位元：音量由裝置／擴大機控制</span>
+      </div>
+      </div>
+      <span class="p-spacer"></span>
+      <div class="p-group">
+      <div class="p-menu-wrap" id="p-chapter-wrap" hidden>
+        <button class="p-btn" data-action="chapter-menu" aria-label="章節" aria-haspopup="menu" aria-controls="p-chapters">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h13"></path><circle cx="19" cy="12" r="1.5" fill="currentColor"></circle></svg>
+        </button>
+      </div>
+      <div class="p-menu-wrap" id="p-audio-wrap" hidden>
+        <button class="p-btn" data-action="audio-menu" aria-label="音軌" aria-haspopup="menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"></path></svg>
+        </button>
+        <div class="p-menu glass-dark p-menu-scroll" id="p-audio-menu" role="menu" hidden></div>
+      </div>
+      <div class="p-menu-wrap" id="p-quality-wrap" hidden>
+        <button class="p-btn" data-action="toggle-upscale" aria-label="切換超解析放大" title="切換超解析放大（U）">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M8 15l3-3 2 2 3-4M8 8h2M8 18h2"></path></svg>
+        </button>
+      </div>
+      <div class="p-menu-wrap">
+        <button class="p-btn" data-action="subtitle-menu" aria-label="字幕" aria-haspopup="menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M7 13h4M13 13h4M7 16h10"></path></svg>
+        </button>
+        <div class="p-menu glass-dark" id="p-sub-menu" role="menu" hidden></div>
+      </div>
+      <button class="p-btn" data-action="info" aria-label="播放資訊">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6M12 7.5v.5"></path></svg>
+      </button>
+      <button class="p-btn" data-action="fullscreen" aria-label="全螢幕">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+      </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-info glass-dark" id="p-info" hidden></div>
+  <div class="p-help glass-dark" id="p-help" hidden>
+    <h3>鍵盤快捷鍵</h3>
+    <dl>
+      <dt>Space / K</dt><dd>播放 / 暫停</dd>
+      <dt>← / →</dt><dd>倒轉 / 快轉 10 秒（Shift：60 秒）</dd>
+      <dt>J / L</dt><dd>倒轉 / 快轉 10 秒</dd>
+      <dt>- / =</dt><dd>音量 −5 / +5（音量滑桿上也可用 ↑ / ↓ 或滾輪）</dd>
+      <dt>M</dt><dd>靜音 / 取消靜音</dd>
+      <dt>0 – 9</dt><dd>跳到 0% – 90%</dd>
+      <dt>Home / End</dt><dd>從頭 / 片尾</dd>
+      <dt>PgUp / PgDn</dt><dd>上一章 / 下一章</dd>
+      <dt>N</dt><dd>下一集</dd>
+      <dt>C</dt><dd>字幕選單</dd>
+      <dt>F / 雙擊畫面</dt><dd>全螢幕</dd>
+      <dt>I</dt><dd>播放資訊</dd>
+      <dt>U</dt><dd>超解析放大開 / 關</dd>
+      <dt>?</dt><dd>顯示 / 隱藏本說明</dd>
+      <dt>Esc</dt><dd>離開全螢幕 / 返回</dd>
+    </dl>
+  </div>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<div id="vs-init" class="vs-init" role="status" aria-live="polite" hidden><span class="vs-init-dot" aria-hidden="true"></span><span class="vs-init-body"><span class="vs-init-t"></span><span class="vs-init-n"></span></span></div>
+<script src="lan.js?v=20261016lanlock"></script>
+<script src="app.js?v=20261016audioauto"></script>
+</body>
+</html>
